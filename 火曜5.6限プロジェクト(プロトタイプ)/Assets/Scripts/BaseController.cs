@@ -13,6 +13,10 @@ public class BaseController : MonoBehaviour
     {
         Debug.Log(CastleLife); //確認用
     }
+    //プレイヤーが触れたらライトを充電する
+
+    //時間経過で拠点が一つ出現
+
     //Enemyが触れた時に拠点の耐久を減らす
     private void OnTriggerEnter2D(Collider2D col)
     {

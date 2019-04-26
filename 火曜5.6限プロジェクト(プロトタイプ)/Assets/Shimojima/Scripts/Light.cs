@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Right : MonoBehaviour
+public class Light : MonoBehaviour
 {
     float m_posx;
     float m_posy;
+    private int _myDir;
+    [SerializeField]
+    private PlayerControllerTest pct;
     void Start()
     {
-        
+        pct = pct.GetComponent<PlayerControllerTest>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //m_posx = Input.mousePosition.x;
-        //m_posy = Input.mousePosition.y;
-        //transform.position = Camera.main.ScreenToWorldPoint(new Vector3(m_posx,m_posy,10.0f));
+        _myDir = pct.myDir;
 
         var pos = Camera.main.WorldToScreenPoint(transform.localPosition);
         var rotation = Quaternion.LookRotation(Vector3.forward, Input.mousePosition - pos);
@@ -25,8 +26,7 @@ public class Right : MonoBehaviour
         {
             transform.localRotation = rotation;
         }
-
-        //transform.localRotation = rotation;
+        
 
     }
 }

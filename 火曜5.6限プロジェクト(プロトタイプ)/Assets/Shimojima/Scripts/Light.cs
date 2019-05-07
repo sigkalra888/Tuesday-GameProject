@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Light : MonoBehaviour
 {
-    private int _myDir;
-    private float _eulerAngle;
+    private int _myDir;         //向いている方向
+    private float _eulerAngle;  //現在のアングル
     private bool _angleCheck;
+
     [SerializeField]
     private GameObject pct;
     private PlayerControllerTest _pct;
+
     [SerializeField]
     private AngleCheck angC;
+
+    public float battery;
+
     void Start()
     {
         _pct = pct.GetComponent<PlayerControllerTest>();

@@ -26,7 +26,7 @@ public class Dento : MonoBehaviour
     void Update()
     {
         lightCom.spotAngle = lightRange;
-        lightCollider.radius = lightRange/16;
+        lightCollider.radius = lightRange / 16;
         if (playerTouch)
         {
             if (Input.GetKeyDown(KeyCode.B))

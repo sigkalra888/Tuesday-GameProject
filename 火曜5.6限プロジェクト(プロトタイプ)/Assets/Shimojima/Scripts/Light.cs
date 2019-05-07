@@ -15,15 +15,43 @@ public class Light : MonoBehaviour
     [SerializeField]
     private AngleCheck angC;
 
+    [SerializeField]
+    private float decrease;
     public float battery;
+
+    [SerializeField]
+    private float timeInterval;
+    private float temptime;
+    private float time;
+    private bool timeCheack = false;
+
+    [SerializeField]
+    private float scaleChanger;
+    private float lightScale;
+    private float originScale;
 
     void Start()
     {
+        originScale = transform.localScale.x;
+        lightScale = scaleChanger * battery;
+        transform.localScale = new Vector3(originScale + lightScale, originScale + lightScale, 1);
         _pct = pct.GetComponent<PlayerControllerTest>();
     }
     
     void Update()
     {
+        time += Time.deltaTime;
+        if (time >= 3 && timeCheack == false)
+        {
+            timeCheack = true;
+            time = 0;
+        }
+
+        if (timeCheack)
+        {
+            BatteryDown();
+        }
+
         transform.localPosition = new Vector3(pct.transform.localPosition.x,-3.9f,0);
         _eulerAngle = angC.GetComponent<AngleCheck>().eulerAngle;
         _angleCheck = angC.GetComponent<AngleCheck>().angleCheck;
@@ -70,5 +98,25 @@ public class Light : MonoBehaviour
         {
             transform.localRotation = rotation;
         }
+    }
+
+    private void BatteryDown()
+    {
+        if (time >= temptime)
+        {
+            if (battery > 0)
+            {
+                battery -= decrease;
+                LightScaleChange();
+            }
+            temptime = time + timeInterval;
+        }
+        
+    }
+
+    private void LightScaleChange()
+    {
+        lightScale = scaleChanger * battery;
+        transform.localScale = new Vector3(originScale + lightScale, originScale + lightScale, 1);
     }
 }

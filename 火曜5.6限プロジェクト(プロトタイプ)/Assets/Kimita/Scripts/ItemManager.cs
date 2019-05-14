@@ -8,7 +8,8 @@ public class ItemManager : SingletonMonoBehaviour<ItemManager>
         BatteryHeal, //バッテリーの回復
         LightRangeUp //ライトの範囲増加
     }
-    
+    public List<GameObject> Item;
+
     //アイテムを使う関数
     public void UseItem()
     {
@@ -27,9 +28,37 @@ public class ItemManager : SingletonMonoBehaviour<ItemManager>
         }
     }
     
+    public void InstanceItem()
+    {
+        int rand = Random.Range(0, 2);
+        if(rand == 0)
+        {
+            Instantiate(Item[rand]);
+        }
+        else
+        {
+            Instantiate(Item[rand]);
+        }
+    }
+
+    public void UseBatteryHeal()
+    {
+        // バッテリーの回復
+        return;
+    }
+
+    public void UseLightUp()
+    {
+        // ライトの範囲増加
+        return;
+    }
+
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            InstanceItem();
+        }
     }
 }

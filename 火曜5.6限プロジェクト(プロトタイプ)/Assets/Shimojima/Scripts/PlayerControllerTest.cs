@@ -8,7 +8,7 @@ public class PlayerControllerTest : MonoBehaviour
     [SerializeField]
     private GameObject texture;
     [SerializeField]
-    private int warkSpeed;
+    private float warkSpeed;
     public int myDir = 0;
 
     private float texScale;
@@ -32,6 +32,7 @@ public class PlayerControllerTest : MonoBehaviour
             texScale = -0.5f;
             texture.transform.localScale = new Vector3(texScale, 0.5f, 1);
             rb2d.velocity = new Vector2(-warkSpeed, 0);
+
         }
         if (Input.GetKey(KeyCode.D))
         {
@@ -39,6 +40,7 @@ public class PlayerControllerTest : MonoBehaviour
             texScale = 0.5f;
             texture.transform.localScale = new Vector3(texScale, 0.5f, 1);
             rb2d.velocity = new Vector2(warkSpeed, 0);
+
         }
     }
 }

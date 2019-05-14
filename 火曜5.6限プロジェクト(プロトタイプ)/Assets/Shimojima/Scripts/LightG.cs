@@ -77,6 +77,10 @@ public class LightG : MonoBehaviour
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
+        else if (_eulerAngle < 270 && _eulerAngle > 90)
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 270);
+        }
 
         if (_angleCheck)
         {
@@ -89,9 +93,13 @@ public class LightG : MonoBehaviour
         var pos = Camera.main.WorldToScreenPoint(transform.localPosition);
         var rotation = Quaternion.LookRotation(Vector3.forward, Input.mousePosition - pos);
 
-        if (_eulerAngle > 0 && _eulerAngle < 180)
+        if (_eulerAngle > 0 && _eulerAngle < 90)
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (_eulerAngle > 90 && _eulerAngle < 270)
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 90);
         }
 
         if (_angleCheck)

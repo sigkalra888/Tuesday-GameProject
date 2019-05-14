@@ -8,21 +8,32 @@ public class BaseController : MonoBehaviour
     [SerializeField] private GameObject R_Shiro;
     [SerializeField] private GameObject L_Shiro;
 
-    [SerializeField] public int CastleLife;
+    [SerializeField] public int _L_castleLife;
+    [SerializeField] public int _R_castleLife;
+    private float _time;
+    public float _targettime;
     void Update()
     {
-        Debug.Log(CastleLife); //確認用
+        // Debug.Log(CastleLife); //確認用
+        //時間経過で拠点が一つ出現
+        //仮のタイムでの作成
+        _time += Time.deltaTime;
+        //Debug.Log(_time);
+        if (_time >= _targettime)
+        {
+            L_Shiro.gameObject.SetActive(true);
+        }
+    }
+    public void CastleLife()
+    {
+        if (_R_castleLife == 0 || _L_castleLife == 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
+        }
     }
     //プレイヤーが触れたらライトを充電する
-
-    //時間経過で拠点が一つ出現
-
-    //Enemyが触れた時に拠点の耐久を減らす
-    private void OnTriggerEnter2D(Collider2D col)
+    private void LightHeal()
     {
-        if (col.gameObject.transform.name == "Enemy")
-        {
-            CastleLife = CastleLife - 10;
-        }
+
     }
 }

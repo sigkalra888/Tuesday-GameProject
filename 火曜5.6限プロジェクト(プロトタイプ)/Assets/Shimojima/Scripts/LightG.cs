@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Light : MonoBehaviour
+public class LightG : MonoBehaviour
 {
     private int _myDir;         //向いている方向
     private float _eulerAngle;  //現在のアングル

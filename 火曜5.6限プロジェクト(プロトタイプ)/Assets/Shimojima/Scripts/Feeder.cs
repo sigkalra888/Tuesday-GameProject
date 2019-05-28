@@ -27,12 +27,12 @@ public class Feeder : MonoBehaviour
     {
         if (alpha == false)
         {
-            a -= 0.02f;
+            a -= 0.01f;
             startCall.GetComponent<Text>().color = new Color(r,g,b,a);
         }
         else if (alpha == true)
         {
-            a += 0.02f;
+            a += 0.01f;
             startCall.GetComponent<Text>().color = new Color(r, g, b, a);
         }
 

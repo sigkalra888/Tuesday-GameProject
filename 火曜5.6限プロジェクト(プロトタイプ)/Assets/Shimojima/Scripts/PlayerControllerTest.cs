@@ -23,7 +23,6 @@ public class PlayerControllerTest : MonoBehaviour
     {
         Move();
     }
-
     private void Move()
     {
         if (Input.GetKey(KeyCode.A))

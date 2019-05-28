@@ -6,18 +6,39 @@ public class Enemy : MonoBehaviour
 {
 
     private GameObject nearObj;
+    float hp = 2;
+    private float HP
+    {
+        get { return hp; }
+        set { hp = value; }
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
         nearObj = serchTag(gameObject, "castle");
         Debug.Log(nearObj);
-    }
 
+        Vector2 goal= EnemyManager.instance.Move(gameObject, nearObj);
+        StartCoroutine(EnemyMove(goal));
+    }
+    IEnumerator EnemyMove(Vector2 vec2)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+            transform.position += new Vector3(vec2.x, vec2.y, 0);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        EnemyManager.instance.Move(gameObject,nearObj);
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+            EnemyManager.instance.DropItem(transform.position);
+        }
     }
 
     GameObject serchTag(GameObject nowObj, string tagName)
@@ -40,14 +61,21 @@ public class Enemy : MonoBehaviour
         //最も近い城を返す
         return targetObj;
     }
-    //城に対する攻撃判定
-    public void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "castle")
         {
             Destroy(gameObject);
-            EnemyManager.instance.DropItem();
             Debug.Log("10ダメージ");
+        }
+
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Light")
+        {
+            hp -= Time.deltaTime;
         }
     }
 }

@@ -49,9 +49,9 @@ public class Item : MonoBehaviour
         }
 
     }
-
+    
     // プレイヤーとの判定
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
@@ -59,9 +59,11 @@ public class Item : MonoBehaviour
             {
                 case ItemManager.ItemKind.BatteryHeal:
                     ItemM.UseBatteryHeal();
+                    Destroy(gameObject);
                     break;
                 case ItemManager.ItemKind.LightRangeUp:
                     ItemM.UseLightUp();
+                    Destroy(gameObject);
                     break;
                 default:
                     Debug.Log("ErrorMassage:ItemScript");

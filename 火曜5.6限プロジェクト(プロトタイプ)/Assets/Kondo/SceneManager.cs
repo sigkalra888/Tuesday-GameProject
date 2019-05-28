@@ -37,6 +37,12 @@ public class SceneManager : MonoBehaviour
 
     }
 
+    public void MoveResult()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
+
+    }
+
     public void MoveGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");

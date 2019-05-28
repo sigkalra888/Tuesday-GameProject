@@ -35,7 +35,7 @@ public class BaseController : MonoBehaviour
     {
         if (_R_castleLife == 0 || _L_castleLife == 0 || _C_castleLife == 0)
         {
-            SceneManager.LoadScene("Result");
+            SceneManager.instance.MoveResult();
         }
     }
     //プレイヤーが触れたらライトを充電する

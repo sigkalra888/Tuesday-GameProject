@@ -52,7 +52,7 @@ public class LightG : MonoBehaviour
             BatteryDown();
         }
 
-        transform.localPosition = new Vector3(pct.transform.localPosition.x,-3.9f,0);
+        transform.localPosition = (_myDir==0)?new Vector3(pct.transform.localPosition.x,-3.9f,0): new Vector3(pct.transform.localPosition.x-0.6f, -3.9f, 0);
         _eulerAngle = angC.GetComponent<AngleCheck>().eulerAngle;
         _angleCheck = angC.GetComponent<AngleCheck>().angleCheck;
         _myDir = _pct.myDir;

@@ -34,7 +34,14 @@ public class SceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetMouseButtonDown(0))
+        {
+            MoveGame();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            MoveResult();
+        }
     }
 
     public void MoveResult()

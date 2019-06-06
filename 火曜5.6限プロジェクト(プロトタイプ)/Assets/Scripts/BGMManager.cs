@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BGMManager : MonoBehaviour
 {
@@ -17,7 +18,10 @@ public class BGMManager : MonoBehaviour
     }
     public void BGM_Start()
     {
-        bgmAudioSource.clip = bgm[0];
-        bgmAudioSource.Play();
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title")
+        {
+            bgmAudioSource.clip = bgm[0];
+            bgmAudioSource.Play();
+        }
     }
 }

@@ -9,7 +9,7 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
     private float rad;
     private Vector2 Position;
     [SerializeField]
-    private Vector2 speed = new Vector2(0.01f, 0.01f);
+    private Vector2 speed = new Vector2(0.05f, 0.05f);
 
     public void DropItem(Vector3 vec3)
     {
@@ -40,8 +40,8 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
         //現在座標をPositionに代入
         Position = enemy.transform.position;
         //radにCos,Sinを使い移動
-        Position.x = speed.x * x/5;
-        Position.y = speed.y * y/5;
+        Position.x = speed.x * (1/x);
+        Position.y = speed.y * (1/y);
         //現在座標に加減したPositonを代入
         return Position;
         //enemy.transform.position = Position;

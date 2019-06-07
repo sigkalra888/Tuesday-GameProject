@@ -7,10 +7,10 @@ public class ResultController : MonoBehaviour
 {
     public void GameRestart()
     {
-        SceneManager.LoadScene("game");
+        SceneManager.instance.MoveGame();
     }
     public void GameTitle()
     {
-        SceneManager.LoadScene("main");
+        SceneManager.instance.MoveMain();
     }
 }

@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nearObj = serchTag(gameObject, "castle");
+        nearObj = SerchTag(gameObject, "castle");
         Debug.Log(nearObj);
 
         Vector2 goal= EnemyManager.instance.Move(gameObject, nearObj);
@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    GameObject serchTag(GameObject nowObj, string tagName)
+    GameObject SerchTag(GameObject nowObj, string tagName)
     {
         float tmDis = 0; //一時変数
         float nearDis = 0; //近い城との距離

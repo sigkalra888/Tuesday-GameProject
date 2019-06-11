@@ -7,10 +7,12 @@ public class ResultController : MonoBehaviour
 {
     public void GameRestart()
     {
-        SceneManager.instance.MoveGame();
+        //SceneManager.instance.MoveGame();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("game");
     }
     public void GameTitle()
     {
-        SceneManager.instance.MoveTitle();
+        //SceneManager.instance.MoveTitle();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
     }
 }

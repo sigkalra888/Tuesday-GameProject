@@ -15,6 +15,11 @@ public class TimerManager : SingletonMonoBehaviour<TimerManager>
     // Update is called once per frame
     void Update()
     {
+        if (PauseManager.instance.Pause) return;
         Count += Time.deltaTime;
+    }
+    public void ResetCount()
+    {
+        Count = 0;
     }
 }

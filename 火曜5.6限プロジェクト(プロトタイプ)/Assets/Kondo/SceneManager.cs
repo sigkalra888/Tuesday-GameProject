@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneManager : MonoBehaviour
 {
 
-
+    public Scene[] scenes;
 
     public GameObject SM;
     static public SceneManager instance;
@@ -20,7 +20,6 @@ public class SceneManager : MonoBehaviour
         }
         else
         {
-
             Destroy(SM);
         }
 
@@ -34,14 +33,14 @@ public class SceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            MoveGame();
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            MoveResult();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    MoveGame();
+        //}
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    MoveResult();
+        //}
     }
 
     public void MoveResult()
@@ -52,13 +51,13 @@ public class SceneManager : MonoBehaviour
 
     public void MoveGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("game");
 
     }
 
-    public void MoveMain()
+    public void MoveTitle()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
 
     }
 }

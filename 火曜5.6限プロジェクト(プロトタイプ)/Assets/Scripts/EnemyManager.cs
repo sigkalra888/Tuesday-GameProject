@@ -36,12 +36,12 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
         //                nearObj.transform.position.x-enemy.transform.position.x);
         float x = nearObj.transform.position.x-enemy.transform.position.x;
         float y = nearObj.transform.position.y-enemy.transform.position.y ;
-        
+
         //現在座標をPositionに代入
-        Position = enemy.transform.position;
+        Position = transform.position;
         //radにCos,Sinを使い移動
-        Position.x = speed.x * (1/x);
-        Position.y = speed.y * (1/y);
+        Position.x += speed.x * x/10;
+        Position.y += speed.y * y/10;
         //現在座標に加減したPositonを代入
         return Position;
         //enemy.transform.position = Position;

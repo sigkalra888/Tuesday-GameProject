@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (PauseManager.instance.Pause) return;
         if (Input.GetKey(KeyCode.A))
         {
             rb2d.velocity = new Vector2(-hori, 0);

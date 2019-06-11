@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
         get { return hp; }
         set { hp = value; }
     }
-
+    Vector3 pos = new Vector3();
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +22,15 @@ public class Enemy : MonoBehaviour
 
         Vector2 goal= EnemyManager.instance.Move(gameObject, nearObj);
         StartCoroutine(EnemyMove(goal));
+        pos = Vector3.zero;
     }
     IEnumerator EnemyMove(Vector2 vec2)
     {
         while (true)
         {
             yield return new WaitForSeconds(Time.deltaTime);
-            transform.position += new Vector3(vec2.x, vec2.y, 0);
+
+            transform.position +=(PauseManager.instance.Pause)? new Vector3(0, 0, 0) : new Vector3(vec2.x, vec2.y, 0);
         }
     }
     // Update is called once per frame
@@ -76,6 +78,12 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Light")
         {
             hp -= Time.deltaTime;
+        }
+        if(collision.gameObject.tag == "Dento")
+        {
+            Vector2 goal = EnemyManager.instance.Move(gameObject, nearObj);
+            if (PauseManager.instance.Pause) return;
+            transform.position -= new Vector3(goal.x/2, goal.y/2, 0);
         }
     }
 }

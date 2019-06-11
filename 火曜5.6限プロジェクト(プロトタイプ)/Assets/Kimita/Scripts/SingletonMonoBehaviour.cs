@@ -19,7 +19,6 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
         else
         {
             instance = this as T;
-            DontDestroyOnLoad(gameObject);
         }
     }
 

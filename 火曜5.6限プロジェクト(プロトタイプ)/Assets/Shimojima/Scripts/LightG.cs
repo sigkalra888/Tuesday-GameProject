@@ -40,6 +40,7 @@ public class LightG : MonoBehaviour
     
     void Update()
     {
+        if (PauseManager.instance.Pause) return;
         time += Time.deltaTime;
         if (time >= 3 && timeCheack == false)
         {

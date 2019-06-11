@@ -11,6 +11,6 @@ public class ResultController : MonoBehaviour
     }
     public void GameTitle()
     {
-        SceneManager.instance.MoveMain();
+        SceneManager.instance.MoveTitle();
     }
 }

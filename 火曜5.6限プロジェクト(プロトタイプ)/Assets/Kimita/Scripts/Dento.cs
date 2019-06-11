@@ -40,7 +40,7 @@ public class Dento : MonoBehaviour
     {
         if(collision.gameObject.name == "Player")
         {
-            button.gameObject.SetActive(true);
+            //button.gameObject.SetActive(true);
             playerTouch = true;
         }
     }

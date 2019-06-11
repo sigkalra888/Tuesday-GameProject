@@ -68,10 +68,17 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "castle")
         {
-            Destroy(gameObject);
-            Debug.Log("10ダメージ");
+            
+            StartCoroutine(RedSprite());
         }
 
+    }
+    IEnumerator RedSprite()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        Destroy(gameObject);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

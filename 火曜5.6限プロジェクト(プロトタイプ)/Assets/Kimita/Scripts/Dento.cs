@@ -11,6 +11,8 @@ public class Dento : MonoBehaviour
     [SerializeField]
     float lightRange;
     bool playerTouch;
+    bool lightCheck;
+    float lightTime;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,7 @@ public class Dento : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        lightTime += Time.deltaTime;
         lightCom.spotAngle = lightRange;
         lightCollider.radius = lightRange / 16;
         if (playerTouch)
@@ -32,8 +35,17 @@ public class Dento : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.B))
             {
                 light.SetActive(true);
+                lightTime = 0;
+                lightCheck = true;
+                SEManager.instance.SEPlay(3);
             }
         }
+        if (lightCheck&&lightTime >= 15f)
+        {
+            lightCheck = false;
+            light.SetActive(false);
+        }
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)

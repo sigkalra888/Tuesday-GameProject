@@ -13,11 +13,6 @@ public class BGMManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         bgmAudioSource = gameObject.GetComponent<AudioSource>();
-    }
-    private void Update()
-    {
-        Debug.Log(GameManager.instance.NowStatus);
-        Debug.Log(GameManager.instance.NowStatus);
         if (GameManager.instance.NowStatus == GameManager.GameStatus.Title)
         {
             bgmAudioSource.clip = bgm[0];
@@ -27,6 +22,23 @@ public class BGMManager : MonoBehaviour
             bgmAudioSource.clip = bgm[1];
         }
 
+        bgmAudioSource.Play();
+    }
+    private void Update()
+    {
+        
+    }
+    public void PlayMusic()
+    {
+        bgmAudioSource = gameObject.GetComponent<AudioSource>();
+        if (GameManager.instance.NowStatus == GameManager.GameStatus.Title)
+        {
+            bgmAudioSource.clip = bgm[0];
+        }
+        else if (GameManager.instance.NowStatus == GameManager.GameStatus.Game)
+        {
+            bgmAudioSource.clip = bgm[1];
+        }
         bgmAudioSource.Play();
     }
 }

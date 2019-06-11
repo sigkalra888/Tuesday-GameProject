@@ -55,6 +55,7 @@ public class Item : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            SEManager.instance.SEPlay(2);
             switch(item)
             {
                 case ItemManager.ItemKind.BatteryHeal:

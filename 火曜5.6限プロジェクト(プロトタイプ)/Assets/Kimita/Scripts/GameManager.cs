@@ -16,6 +16,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     
     private void Start()
     {
+        GameOver = false;
         DontDestroyOnLoad(gameObject);
         NowStatus = GameStatus.Title;
     }
@@ -32,19 +33,22 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                     PauseManager.instance.StartCanvas.gameObject.SetActive(true);
                     PauseManager.instance.OnPause();
                     SceneManager.instance.MoveGame();
+
+                    GameObject.Find("BGM").GetComponent<BGMManager>().PlayMusic();
                 }
                 break;
             case GameStatus.Game:
+                float count = TimerManager.instance.Count;
                 if (Input.GetMouseButtonDown(0)&&PauseManager.instance.Pause)
                 {
                     PauseManager.instance.Setting();
                 }
-                if (TimerManager.instance.Count <= 180 && GameOver)
+                if (count <= 180 && GameOver)
                 {
                     NowStatus = GameStatus.Result;
                     SceneManager.instance.MoveResult();
                 }
-                else if(TimerManager.instance.Count >= 180)
+                else if(count >= 180)
                 {
                     NowStatus = GameStatus.Result;
                     SceneManager.instance.MoveResult();
@@ -55,9 +59,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 {
                 }
                 break;
-
-
-
         }
     }
     public void GetGameOver()

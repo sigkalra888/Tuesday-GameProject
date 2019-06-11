@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject nearObj;
     float hp = 2;
+    bool isSet = false;
     private float HP
     {
         get { return hp; }
@@ -17,6 +18,10 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(TimerManager.instance.Count >= 80f)
+        {
+            isSet = true;
+        }
         nearObj = SerchTag(gameObject, "castle");
         Debug.Log(nearObj);
 
@@ -36,6 +41,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isSet)
+        {
+            Vector2 goal = EnemyManager.instance.Move(gameObject, nearObj);
+            if (PauseManager.instance.Pause) return;
+            transform.position -= new Vector3(goal.x / 1.5f, goal.y / 1.5f, 0);
+        }
         if (hp <= 0)
         {
             Destroy(gameObject);
@@ -68,13 +79,14 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "castle")
         {
-            
+            BaseController.instance.CatsleDamage(collision.gameObject.name);
             StartCoroutine(RedSprite());
         }
 
     }
     IEnumerator RedSprite()
     {
+        SEManager.instance.SEPlay(1);
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(0.1f);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;

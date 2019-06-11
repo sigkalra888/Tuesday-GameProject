@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimerManager : SingletonMonoBehaviour<TimerManager>
 {
     public float Count { get; private set; } = 0;
-
+    bool set;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +15,9 @@ public class TimerManager : SingletonMonoBehaviour<TimerManager>
     // Update is called once per frame
     void Update()
     {
+        if (Count >= 80f && !set) { GameObject.Find("Main Camera").GetComponent<CameraController>().CameraSizeChange(); set = true; }
         if (PauseManager.instance.Pause) return;
-        Count += Time.deltaTime;
+        if (GameManager.instance.NowStatus == GameManager.GameStatus.Game)Count += Time.deltaTime;
     }
     public void ResetCount()
     {
